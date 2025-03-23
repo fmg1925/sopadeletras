@@ -24,11 +24,11 @@ int totalCubosRojos = 0; // Contadores
 int totalPalabrasListas = 0;
 int cantidadPalabras = 0;
 int cantidadPalabrasEnUso = 0;
-int ultimoI = -1, ultimoJ = -1;           // Coordenadas último cubo clickeado
-int espacioDisponible = FILAS * COLUMNAS; // Calcular espacio
+int ultimoI = -1, ultimoJ = -1;                 // Coordenadas último cubo clickeado
+int espacioDisponible = FILAS * COLUMNAS;       // Calcular espacio
 int direction, startX, startY, longitudPalabra; // Iniciar variables
 
-char palabraRandom[9];  // Palabra aleatoria
+char palabraRandom[9];                                   // Palabra aleatoria
 char caracteresClickeados[LIMITE_LETRAS + 1][2];         // Letras clickeadas
 char palabrasEnUso[PALABRAS_MAXIMAS][LIMITE_LETRAS + 1]; // Palabras en uso
 char letras[FILAS][COLUMNAS];                            // Letras en el tablero
@@ -79,7 +79,8 @@ int contarPalabrasEnUso() // Contar palabras en uso que no están vacías
 
 int comprobarPalabraRepetida(const char *palabra) // Comprobar palabras repetidas
 {
-    if(cantidadPalabrasEnUso == 0) return 0;
+    if (cantidadPalabrasEnUso == 0)
+        return 0;
     for (int i = 0; i < cantidadPalabrasEnUso; i++)
     {
         if (strcmp(palabra, palabrasEnUso[i]) == 0) // Si la palabra está repetida
@@ -93,10 +94,10 @@ int comprobarPalabraRepetida(const char *palabra) // Comprobar palabras repetida
 void generarTabla()
 {
     if (cantidadPalabras == 0)
-        contarPalabras();      // Solo contar una vez
-    srand(time(NULL) ^ rand());         // Seed aleatoria
-    desmarcarTodo();    // Desmarcar todo en caso de volver a jugar
-    cantidadPalabrasEnUso = 0; // Reiniciar valores y vaciar contadores
+        contarPalabras();       // Solo contar una vez
+    srand(time(NULL) ^ rand()); // Seed aleatoria
+    desmarcarTodo();            // Desmarcar todo en caso de volver a jugar
+    cantidadPalabrasEnUso = 0;  // Reiniciar valores y vaciar contadores
     totalPalabrasListas = 0;
     totalCubosRojos = 0;
     espacioDisponible = FILAS * COLUMNAS;
@@ -116,12 +117,12 @@ void generarTabla()
     {
         for (int j = 0; j < LIMITE_LETRAS; j++)
         {
-            palabrasEnUso[i][j] = '\0'; // Vaciar todos los carácteres de todas las palabras en uso
-            memset(caracteresClickeados[j], '\0', 2); // Vaciar carácteres clickeados
+            palabrasEnUso[i][j] = '\0';                     // Vaciar todos los carácteres de todas las palabras en uso
+            memset(caracteresClickeados[j], '\0', 2);       // Vaciar carácteres clickeados
             memset(palabraRandom, '\0', LIMITE_LETRAS + 1); // Vaciar palabra aleatoria
         }
     }
-    
+
     for (int i = 0; i < FILAS; i++)
     {
         for (int j = 0; j < COLUMNAS; j++)
@@ -132,7 +133,7 @@ void generarTabla()
 
     while (espacioDisponible > 20) // Mientras haya más de 20 espacios
     {
-        direction = (rand() % 6);                     // Valor aleatorio entre 0 y 5 para las direcciones
+        direction = (rand() % 6); // Valor aleatorio entre 0 y 5 para las direcciones
         do
         {
             snprintf(palabraRandom, LIMITE_LETRAS + 1, "%s", palabras[rand() % cantidadPalabras]); // Asignar palabra aleatoria a palabraRandom
@@ -168,7 +169,7 @@ void generarTabla()
 
                 strncpy(palabrasEnUso[cantidadPalabrasEnUso], palabraRandom, strlen(palabraRandom) + 1); // Copiar palabra aleatoria a palabras en uso
 
-                cantidadPalabrasEnUso++; // Aumentar contador palabras en uso
+                cantidadPalabrasEnUso++;              // Aumentar contador palabras en uso
                 espacioDisponible -= longitudPalabra; // Restar espacio disponible con la longitud de la palabra random
             }
             break;
@@ -200,7 +201,7 @@ void generarTabla()
 
                 strncpy(palabrasEnUso[cantidadPalabrasEnUso], palabraRandom, strlen(palabraRandom) + 1); // Copiar palabra aleatoria a palabras en uso
 
-                cantidadPalabrasEnUso++; // Aumentar contador palabras en uso
+                cantidadPalabrasEnUso++;              // Aumentar contador palabras en uso
                 espacioDisponible -= longitudPalabra; // Restar espacio disponible con la longitud de la palabra random
             }
             break;
@@ -233,7 +234,7 @@ void generarTabla()
 
                 strncpy(palabrasEnUso[cantidadPalabrasEnUso], palabraRandom, strlen(palabraRandom) + 1); // Copiar palabra aleatoria a palabras en uso
 
-                cantidadPalabrasEnUso++; // Aumentar contador palabras en uso
+                cantidadPalabrasEnUso++;              // Aumentar contador palabras en uso
                 espacioDisponible -= longitudPalabra; // Restar espacio disponible con la longitud de la palabra random
             }
             break;
@@ -267,7 +268,7 @@ void generarTabla()
 
                 strncpy(palabrasEnUso[cantidadPalabrasEnUso], palabraRandom, strlen(palabraRandom) + 1); // Copiar palabra aleatoria a palabras en uso
 
-                cantidadPalabrasEnUso++; // Aumentar contador palabras en uso
+                cantidadPalabrasEnUso++;              // Aumentar contador palabras en uso
                 espacioDisponible -= longitudPalabra; // Restar espacio disponible con la longitud de la palabra random
             }
             break;
@@ -300,7 +301,7 @@ void generarTabla()
 
                 strncpy(palabrasEnUso[cantidadPalabrasEnUso], palabraRandom, strlen(palabraRandom) + 1); // Copiar palabra aleatoria a palabras en uso
 
-                cantidadPalabrasEnUso++; // Aumentar contador palabras en uso
+                cantidadPalabrasEnUso++;              // Aumentar contador palabras en uso
                 espacioDisponible -= longitudPalabra; // Restar espacio disponible con la longitud de la palabra random
             }
             break;
@@ -333,7 +334,7 @@ void generarTabla()
 
                 strncpy(palabrasEnUso[cantidadPalabrasEnUso], palabraRandom, strlen(palabraRandom) + 1); // Copiar palabra aleatoria a palabras en uso
 
-                cantidadPalabrasEnUso++; // Aumentar contador palabras en uso
+                cantidadPalabrasEnUso++;              // Aumentar contador palabras en uso
                 espacioDisponible -= longitudPalabra; // Restar espacio disponible con la longitud de la palabra random
             }
             break;
@@ -365,11 +366,10 @@ int main()
     void verificarVecinos(int i, int j);
     bool comprobarPalabras();
 
-
     InitWindow(screenWidth, screenHeight, "Sopa de letras"); // Iniciar ventana
     SetTargetFPS(60);                                        // Fijar a 60 fps
 
-    generarTabla(); // Generar tabla
+    generarTabla();              // Generar tabla
     while (!WindowShouldClose()) // Mientras esté en ejecución
     {
         BeginDrawing();            // Dibujar
@@ -400,7 +400,7 @@ int main()
                             cubosRojos[i][j] = true; // Seleccionar cubo
                             totalCubosRojos++;
                             strcpy(caracteresClickeados[totalCubosRojos - 1], (char[]){letras[i][j], '\0'}); // Almacenar la letra clickeada
-                            ultimoI = i; // Guardar coordenadas del último click
+                            ultimoI = i;                                                                     // Guardar coordenadas del último click
                             ultimoJ = j;
                             if (totalCubosRojos >= 2)
                             {
@@ -500,7 +500,7 @@ int main()
             DrawText("¡GANASTE!", screenWidth / 2 - padding / 2, screenHeight / 1.4 - padding, 40, BLACK);
         }
         DrawText("R\nPARA\nREINICIAR\n\nRUEDA DEL\nMOUSE\nPARA\nDESMARCAR", 5, 10, 15, BLACK); // Mostrar información de los botones
-        EndDrawing(); // Terminar de dibujar
+        EndDrawing();                                                                          // Terminar de dibujar
     }
 
     CloseWindow(); // Cerrar ventana
@@ -587,7 +587,7 @@ bool comprobarPalabras(char *palabrasUsada) // Conseguir palabra no usada
             return false;
         if (strstr(palabra, palabrasUsada) != NULL) // Si las letras clickeadas coinciden con una palabra
         {
-            totalPalabrasListas++; // Aumentar palabras listas
+            totalPalabrasListas++;                            // Aumentar palabras listas
             if (totalPalabrasListas == cantidadPalabrasEnUso) // Se gana si el total de palabras verdes es igual a las del tablero
             {
                 win = true;
