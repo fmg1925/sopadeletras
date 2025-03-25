@@ -493,7 +493,7 @@ int main()
         {
             int yPos = screenHeight - screenHeight / 4 + (i / 3) * 30; // Aumentar Y cada 4 palabras
             Color colorPalabra = palabrasListas[i] ? GREEN : WHITE;
-            DrawText(palabrasEnUso[i], screenWidth / 7.5 + (i % 3) * 180, yPos, 25, colorPalabra);
+            DrawText(palabrasEnUso[i], screenWidth / 10 + (i % 3) * 180, yPos, 25, colorPalabra);
         }
         for (int i = 0; i < totalCubosRojos; i++)
         {
