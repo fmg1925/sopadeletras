@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
+#include "icono.h"
 
 #define PALABRAS_MAXIMAS 200 // Palabras maximas por usar
 #define LIMITE_LETRAS 8      // Letras maximas por palabra
@@ -369,11 +370,15 @@ int main()
     InitWindow(screenWidth, screenHeight, "Sopa de letras"); // Iniciar ventana
     SetTargetFPS(60);                                        // Fijar a 60 fps
 
+    Image icono = LoadImageFromMemory(".png", icono_png, icono_png_len); // Cargar ícono
+    SetWindowIcon(icono); // Usar ícono en la ventana
+    UnloadImage(icono); // Descargar ícono
+
     generarTabla();              // Generar tabla
     while (!WindowShouldClose()) // Mientras esté en ejecución
     {
         BeginDrawing();            // Dibujar
-        ClearBackground(RAYWHITE); // Limpiar fondo
+        ClearBackground(DARKPURPLE); // Limpiar fondo
 
         Vector2 mousePosition = GetMousePosition(); // Conseguir posición del mouse
 
@@ -486,9 +491,9 @@ int main()
         }
         for (int i = 0; i < cantidadPalabrasEnUso; i++)
         {
-            int yPos = screenHeight - screenHeight / 4 + (i / 5) * 30; // Aumentar Y cada 5 palabras
-            Color colorPalabra = palabrasListas[i] ? GREEN : BLACK;
-            DrawText(palabrasEnUso[i], screenWidth / 25 + (i % 5) * 120, yPos, 20, colorPalabra);
+            int yPos = screenHeight - screenHeight / 4 + (i / 3) * 30; // Aumentar Y cada 4 palabras
+            Color colorPalabra = palabrasListas[i] ? GREEN : WHITE;
+            DrawText(palabrasEnUso[i], screenWidth / 7.5 + (i % 3) * 180, yPos, 25, colorPalabra);
         }
         for (int i = 0; i < totalCubosRojos; i++)
         {
@@ -499,7 +504,7 @@ int main()
             int padding = MeasureText("¡GANASTE!", 40); // Calcular longitud del texto
             DrawText("¡GANASTE!", screenWidth / 2 - padding / 2, screenHeight / 1.4 - padding, 40, BLACK);
         }
-        DrawText("R\nPARA\nREINICIAR\n\nRUEDA DEL\nMOUSE\nPARA\nDESMARCAR", 5, 10, 15, BLACK); // Mostrar información de los botones
+        DrawText("R\nPARA\nREINICIAR\n\nRUEDA DEL\nMOUSE\nPARA\nDESMARCAR", 5, 10, 15, WHITE); // Mostrar información de los botones
         EndDrawing();                                                                          // Terminar de dibujar
     }
 

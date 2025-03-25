@@ -16,4 +16,4 @@ Opción para volver a jugar.
 
 **Cómo compilar:**
 
-gcc main.c -o main -lraylib -lgdi32 -lwinmm
+gcc main.c resource.o -o main -lraylib -lgdi32 -lwinmm -mwindows
